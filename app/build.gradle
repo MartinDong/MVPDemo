@@ -1,0 +1,69 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.example.xiaoyulaoshi.mvpdemo"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+
+    //加入网络实现SDK
+
+    //日志输出 https://github.com/orhanobut/logger
+    compile 'com.orhanobut:logger:2.1.1'
+
+    //json转化工具类 https://github.com/google/gson
+    compile 'com.google.code.gson:gson:2.8.2'
+
+    //使用最新的okhttp包要使用里面的websocket https://github.com/square/okhttp
+    compile 'com.squareup.okhttp3:okhttp:3.9.1'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+
+    //retrofit2 https://github.com/square/retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    compile('com.squareup.retrofit2:converter-protobuf:2.3.0') {
+        // Otherwise Android compile will complain "Multiple dex files define ..."
+        exclude module: "protobuf-java"
+    }
+
+    //rxjava2, https://github.com/ReactiveX/RxAndroid
+    compile 'io.reactivex.rxjava2:rxjava:2.1.8'
+
+    //rxandroid, https://github.com/ReactiveX/RxJava
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    //dagger2, https://github.com/google/dagger
+    compile 'com.google.dagger:dagger-android:2.14'
+    compile 'com.google.dagger:dagger-android-support:2.14'
+    kapt 'com.google.dagger:dagger-android-processor:2.14'
+    kapt 'com.google.dagger:dagger-compiler:2.14.1'
+
+}
